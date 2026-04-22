@@ -6,11 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-    <%= people %>
-    <% for(let i=0; i<people; i++) { %>
-    <input type="text" name="person<%= i %>" value="<%= people[i] %>">
-    
-    <br/>
-    <% } %>
+
+    <form action="/submit" method="POST">
+  <% for(let i = 0; i < people; i++) { %>
+    <h3>Person <%= i + 1 %></h3>
+    <input type="text" name="name<%= i %>" placeholder="Name" ><br>
+    <input type="text" name="aadhar<%= i %>" placeholder="Aadhar"><br>
+    <input type="number" name="age<%= i %>" placeholder="Age"><br><br>
+  <% } %>
+  <input type="hidden" name="total" value="<%= people %>">
+  <button type="submit">Submit</button>
+</form>
+
+
 </body>
 </html>
