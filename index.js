@@ -24,15 +24,11 @@ connectDB();
 app.use('/',HomeRouter);
 app.use('/filter', filterRouter);
 
-app.use('/f1',(req,res)=>{
-   
+app.use('/f1',(req,res)=>{ 
     req.session.ht = 22222;
     res.send('F1 page');
 });
-
-
-app.use('/gt',(req,res)=>{
-   
+app.use('/gt',(req,res)=>{ 
     const htValue = req.session.ht;
     res.send(`GT page with ht value: ${htValue}`);
 });
