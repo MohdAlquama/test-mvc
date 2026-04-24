@@ -1,5 +1,6 @@
 import express from "express";
 import { dataEntry } from "../model/uses.detail.db.js";
+import { StayUser } from "../model/stay.user.db.js";
 const HomeRouter = express.Router();
 
 HomeRouter.get("/", (req, res) => {
@@ -12,6 +13,7 @@ HomeRouter.get("/in", (req, res) => {
 
 HomeRouter.post("/check-in", (req, res) => {
   const { name, aadhar, phone, people, reason, start_date, end_date } = req.body;
+
   new dataEntry({
     Name: name,
     Aadhar_No: aadhar,
@@ -21,25 +23,39 @@ HomeRouter.post("/check-in", (req, res) => {
     Start_Date: start_date,
     End_Date: end_date
   }).save();
-  res.render("Check_In/user_detail_enter", { people });
+  res.render("Check_In/user_detail_enter", { people  , aadhar , phone});
 });
 
-HomeRouter.post("/submit", (req, res) => {
-  const total = req.body.total;
-
+HomeRouter.post("/submit", async (req, res) => {
+  const total = parseInt(req.body.total);
+  const aadharkey = req.body.aadhar;
+  const phonekey = req.body.phone;
+  let people = [];
   for (let i = 0; i < total; i++) {
-   const Name =  req.body["name" + i];
-   const aadhar = req.body["aadhar" + i];
-   const age = req.body["age" + i];
+    const name = req.body["name" + i];
+    const aadhar = req.body["aadhar" + i];
+    const age = req.body["age" + i];
 
-   if(!Name || !aadhar || !age){
-    return res.status(400).send("All fields are required");
-  } else if (isNaN(aadhar) || isNaN(age)) {
-    return res.status(400).send("Aadhar and age must be numbers");
-  } 
-
+    people.push({
+      Name: name,
+      Aadhar_No: aadhar,
+      Age: age
+    });
   }
-  res.send("Done");
+  try {
+    let str = aadharkey + phonekey;
+    console.log(str);
+    await StayUser({
+      Phone_No: phonekey,
+      Number_of_People: total,
+      People: people,
+      key: str
+    }).save();
+    res.send("Done");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error");
+  }
 });
 
 export default HomeRouter;

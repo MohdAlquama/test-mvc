@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-
+    <h1>User Details</h1>
+    <p>Phone: <%=phone%></p>
+    <p>Aadhar: <%=aadhar%></p>
     <form action="/submit" method="POST">
   <% for(let i = 0; i < people; i++) { %>
     <h3>Person <%= i + 1 %></h3>
@@ -15,6 +17,10 @@
     <input type="number" name="age<%= i %>" placeholder="Age"><br><br>
   <% } %>
   <input type="hidden" name="total" value="<%= people %>">
+
+  <input type="hidden" name="aadhar" value="<%= aadhar %>">
+  <input type="hidden" name="phone" value="<%= phone %>">
+
   <button type="submit">Submit</button>
 </form>
 
