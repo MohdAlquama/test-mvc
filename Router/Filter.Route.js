@@ -14,16 +14,7 @@ filterRouter.get("/addhar", (req, res) => {
 filterRouter.post('/addhar', async(req, res) => {
     const aadhar = req.body.aadhar;
     const data =  await dataEntry.find({ Aadhar_No: aadhar });
-      data.then((result) => {
-        if (result) {
-            res.render('fileter/addhar/index', { message: "Aadhar number already exists." });
-        } else {
-            res.render('fileter/addhar/index', { message: "Aadhar number is available." });
-        }
-    }).catch((err) => {
-        console.error(err);
-        res.status(500).send("Internal Server Error");
-    });
+    res.json(data);
 });
 
 

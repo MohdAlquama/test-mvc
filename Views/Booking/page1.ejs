@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Booking</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Aadhar_No</th>
+            <th>Phone_No</th>
+            <th>Number_of_People</th>
+            <th>Why_choose_this_hotel</th>
+            <th>Start_Date</th>
+            <th>End_Date</th>
+            <th>Action</th>
+        </tr>
+        <% x.forEach(item => { %>
+            <tr>
+                <td><%= item.Name %></td>
+                <td><%= item.Aadhar_No %></td>
+                <td><%= item.Phone_No %></td>
+                <td><%= item.Number_of_People %></td>
+                <td><%= item.Why_choose_this_hotel %></td>
+                <td><%= item.Start_Date %></td>
+                <td><%= item.End_Date %></td>
+                <td><a href="/booking/view/<%= item.Aadhar_No %><%=item.Phone_No %>">view</a></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

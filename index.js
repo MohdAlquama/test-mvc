@@ -6,6 +6,7 @@ import HomeRouter from './Router/Home.Route.js';
 import session from 'express-session';
 import { connectDB } from './config/db.js';
 import filterRouter from './Router/Filter.Route.js';
+import BookingRouter from './Router/Booking.Router.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -23,7 +24,7 @@ app.set('views', path.join(__dirname, 'Views'));
 connectDB();
 app.use('/',HomeRouter);
 app.use('/filter', filterRouter);
-
+app.use('/booking',BookingRouter);
 app.use('/f1',(req,res)=>{ 
     req.session.ht = 22222;
     res.send('F1 page');
