@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Booking</h1>
-    <table border="1">
+
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen p-6">
+
+  <!-- Header -->
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Booking List</h1>
+
+  <!-- Table Container -->
+  <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+
+    <table class="min-w-full text-sm text-left">
+
+      <!-- Head -->
+      <thead class="bg-blue-500 text-white">
         <tr>
-            <th>Name</th>
-            <th>Aadhar_No</th>
-            <th>Phone_No</th>
-            <th>Number_of_People</th>
-            <th>Why_choose_this_hotel</th>
-            <th>Start_Date</th>
-            <th>End_Date</th>
-            <th>Action</th>
+          <th class="px-4 py-3">Name</th>
+          <th class="px-4 py-3">Aadhar</th>
+          <th class="px-4 py-3">Phone</th>
+          <th class="px-4 py-3">People</th>
+          <th class="px-4 py-3">Reason</th>
+          <th class="px-4 py-3">Start</th>
+          <th class="px-4 py-3">End</th>
+          <th class="px-4 py-3 text-center">Action</th>
         </tr>
+      </thead>
+
+      <!-- Body -->
+      <tbody class="text-gray-700">
+
         <% x.forEach(item => { %>
-            <tr>
-                <td><%= item.Name %></td>
-                <td><%= item.Aadhar_No %></td>
-                <td><%= item.Phone_No %></td>
-                <td><%= item.Number_of_People %></td>
-                <td><%= item.Why_choose_this_hotel %></td>
-                <td><%= item.Start_Date %></td>
-                <td><%= item.End_Date %></td>
-                <td><a href="/booking/view/<%= item.Aadhar_No %><%=item.Phone_No %>">view</a></td>
-            </tr>
+          <tr class="border-b hover:bg-gray-100">
+
+            <td class="px-4 py-2 font-medium"><%= item.Name %></td>
+            <td class="px-4 py-2"><%= item.Aadhar_No %></td>
+            <td class="px-4 py-2"><%= item.Phone_No %></td>
+            <td class="px-4 py-2 text-center"><%= item.Number_of_People %></td>
+            <td class="px-4 py-2 max-w-[200px] truncate"><%= item.Why_choose_this_hotel %></td>
+            <td class="px-4 py-2"><%= item.Start_Date %></td>
+            <td class="px-4 py-2"><%= item.End_Date %></td>
+
+            <!-- FIXED URL -->
+            <td class="px-4 py-2 text-center">
+              <a href="/booking/view/<%= item.Aadhar_No %><%= item.Phone_No %>"
+                 class="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-lg text-xs">
+                View
+              </a>
+            </td>
+
+          </tr>
         <% }) %>
+
+      </tbody>
+
     </table>
+
+  </div>
+
 </body>
 </html>

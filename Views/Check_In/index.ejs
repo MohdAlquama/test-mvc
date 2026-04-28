@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check In</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check In</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-    <h1>Hotel Check In</h1>
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen p-6">
 
-    <form action="/check-in" method="POST">
+  <!-- Title -->
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">
+    Hotel Check In
+  </h1>
 
-        <!-- Name -->
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" >
-        <br><br>
+  <!-- Full Width Form -->
+  <form action="/check-in" method="POST" class="w-full bg-white p-6 rounded-xl shadow-lg">
 
-        <!-- Aadhar Number -->
-        <label for="aadhar">Aadhar No:</label>
-        <input type="text" id="aadhar" name="aadhar" maxlength="12" >
-        <br><br>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-        <!-- Phone Number -->
-        <label for="phone">Phone No:</label>
-        <input type="tel" id="phone" name="phone" maxlength="10" >
-        <br><br>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Name</label>
+        <input type="text" name="name" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+      </div>
 
-        <!-- Number of People -->
-        <label for="people">Number of People:</label>
-        <input type="number" id="people" name="people" min="1" >
-        <br><br>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Aadhar No</label>
+        <input type="text" name="aadhar" maxlength="12" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+      </div>
 
-        <!-- Reason -->
-        <label for="reason">Why choose this hotel:</label>
-        <textarea id="reason" name="reason" rows="3" ></textarea>
-        <br><br>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Phone No</label>
+        <input type="tel" name="phone" maxlength="10" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+      </div>
 
-        <!-- Start Date -->
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date" >
-        <br><br>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Number of People</label>
+        <input type="number" name="people" min="1" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+      </div>
 
-        <!-- End Date -->
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date" >
-        <br><br>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Start Date</label>
+        <input type="date" name="start_date" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+      </div>
 
-        <!-- Submit -->
-        <button type="submit">Check In</button>
+      <div>
+        <label class="block text-sm font-semibold mb-1">End Date</label>
+        <input type="date" name="end_date" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+      </div>
 
-    </form>
+    </div>
+
+    <div class="mt-4">
+      <label class="block text-sm font-semibold mb-1">Why choose this hotel</label>
+      <textarea name="reason" rows="3" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400"></textarea>
+    </div>
+
+    <button type="submit" class="mt-6 w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg">
+      Check In
+    </button>
+
+  </form>
 
 </body>
 </html>

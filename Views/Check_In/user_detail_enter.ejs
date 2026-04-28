@@ -1,29 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>User Details</h1>
-    <p>Phone: <%=phone%></p>
-    <p>Aadhar: <%=aadhar%></p>
-    <form action="/submit" method="POST">
-  <% for(let i = 0; i < people; i++) { %>
-    <h3>Person <%= i + 1 %></h3>
-    <input type="text" name="name<%= i %>" placeholder="Name" ><br>
-    <input type="text" name="aadhar<%= i %>" placeholder="Aadhar"><br>
-    <input type="number" name="age<%= i %>" placeholder="Age"><br><br>
-  <% } %>
-  <input type="hidden" name="total" value="<%= people %>">
 
-  <input type="hidden" name="aadhar" value="<%= aadhar %>">
-  <input type="hidden" name="phone" value="<%= phone %>">
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen p-6">
 
-  <button type="submit">Submit</button>
-</form>
+  <!-- Header -->
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">User Details</h1>
+    <p class="text-gray-700 mt-2">Phone: <span class="font-semibold"><%= phone %></span></p>
+    <p class="text-gray-700">Aadhar: <span class="font-semibold"><%= aadhar %></span></p>
+  </div>
 
+  <!-- Form -->
+  <form action="/submit" method="POST" class="w-full">
+
+    <!-- Dynamic People Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <% for(let i = 0; i < people; i++) { %>
+        <div class="bg-white p-4 rounded-xl shadow-md">
+
+          <h3 class="text-lg font-semibold mb-3 text-blue-600">
+            Person <%= i + 1 %>
+          </h3>
+
+          <input type="text" name="name<%= i %>" placeholder="Name"
+            class="w-full mb-2 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+
+          <input type="text" name="aadhar<%= i %>" placeholder="Aadhar"
+            class="w-full mb-2 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+
+          <input type="number" name="age<%= i %>" placeholder="Age"
+            class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400">
+
+        </div>
+      <% } %>
+
+    </div>
+
+    <!-- Hidden Fields -->
+    <input type="hidden" name="total" value="<%= people %>">
+    <input type="hidden" name="aadhar" value="<%= aadhar %>">
+    <input type="hidden" name="phone" value="<%= phone %>">
+
+    <!-- Submit -->
+    <button type="submit"
+      class="mt-8 w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+      Submit
+    </button>
+
+  </form>
 
 </body>
 </html>

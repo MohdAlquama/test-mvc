@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stay Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>user stay booking details</h1>
-    <p>Phone_No: <%= x.Phone_No %></p>
-    <p>Number_of_People: <%= x.Number_of_People %></p>
-    <p>key: <%= x.key %></p>
-    <table border="4">
+
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen p-6">
+
+  <!-- Header -->
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">
+    User Stay Booking Details
+  </h1>
+
+  <!-- Info Section -->
+  <div class="bg-white p-5 rounded-xl shadow-md mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <p><span class="font-semibold">Phone No:</span> <%= x.Phone_No %></p>
+    <p><span class="font-semibold">Number of People:</span> <%= x.Number_of_People %></p>
+    <p><span class="font-semibold">Key:</span> <%= x.key %></p>
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+    <table class="min-w-full text-sm text-left">
+
+      <!-- Head -->
+      <thead class="bg-blue-500 text-white">
         <tr>
-            <th>Name</th>
-            <th>Aadhar_No</th>
-            <th>Age</th>
-           
+          <th class="px-4 py-3">Name</th>
+          <th class="px-4 py-3">Aadhar No</th>
+          <th class="px-4 py-3">Age</th>
         </tr>
+      </thead>
+
+      <!-- Body -->
+      <tbody class="text-gray-700">
         <% x.People.forEach(item => { %>
-            <tr>
-                <td><%= item.Name %></td>
-                <td><%= item.Aadhar_No %></td>
-                <td><%= item.Age %></td>
-            </tr>
+          <tr class="border-b hover:bg-gray-100">
+            <td class="px-4 py-2 font-medium"><%= item.Name %></td>
+            <td class="px-4 py-2"><%= item.Aadhar_No %></td>
+            <td class="px-4 py-2"><%= item.Age %></td>
+          </tr>
         <% }) %>
-    
+      </tbody>
+
+    </table>
+  </div>
+
 </body>
 </html>

@@ -27,4 +27,8 @@ CatRouter.get("/view-categorie", (req, res) => {
     });
      
 });
+//hotel router 
+CatRouter.get("/hotel", (req, res) => { 
+    res.render("Categories/hotel/add_hotel");
+});
 export default CatRouter;

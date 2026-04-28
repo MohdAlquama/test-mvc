@@ -1,26 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Categories</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>view Category</h1>
 
-    <table border="1">
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen p-6">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">Categories List</h1>
+    
+    <a href="/cat" class="bg-gray-700 hover:bg-gray-900 text-white px-4 py-2 rounded-lg text-sm">
+      Back
+    </a>
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+
+    <table class="min-w-full text-sm text-left">
+
+      <!-- Head -->
+      <thead class="bg-blue-500 text-white">
         <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Timestamp</th>
+          <th class="px-4 py-3">Name</th>
+          <th class="px-4 py-3">Status</th>
+          <th class="px-4 py-3">Created At</th>
         </tr>
+      </thead>
+
+      <!-- Body -->
+      <tbody class="text-gray-700">
+
         <% categories.forEach(category => { %>
-            <tr>
-                <td><%= category.name %></td>
-                <td><%= category.status %></td>
-                <td><%= category.timestamp.toLocaleString() %></td>
-            </tr>
+          <tr class="border-b hover:bg-gray-100">
+
+            <td class="px-4 py-2 font-medium">
+              <%= category.name %>
+            </td>
+
+            <!-- Status Badge -->
+            <td class="px-4 py-2">
+              <span class="px-2 py-1 text-xs rounded-lg 
+                <%= category.status === 'active' 
+                  ? 'bg-green-100 text-green-700' 
+                  : 'bg-red-100 text-red-700' %>">
+                <%= category.status %>
+              </span>
+            </td>
+
+            <td class="px-4 py-2">
+              <%= new Date(category.timestamp).toLocaleString() %>
+            </td>
+
+          </tr>
         <% }) %>
+
+      </tbody>
+
     </table>
+
+  </div>
+
 </body>
 </html>
