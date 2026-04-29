@@ -8,6 +8,7 @@ import { connectDB } from './config/db.js';
 import filterRouter from './Router/Filter.Route.js';
 import BookingRouter from './Router/Booking.Router.js';
 import CatRouter from './Router/cat.Router.js';
+import multer from 'multer';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +24,24 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'Views'));
 
 connectDB();
+
+const  storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname);
+    }
+  });
+  
+
+  const upload = multer({ storage: storage });
+  app.post('/upload', upload.single('file'), (req, res) => {
+    res.send('File uploaded successfully');
+  });
+app.get('/demo', (req, res) => {
+    res.render('demo/upload');
+});
 app.use('/',HomeRouter);
 app.use('/filter', filterRouter);
 app.use('/booking',BookingRouter);
