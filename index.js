@@ -32,12 +32,7 @@ app.set('views', path.join(__dirname, 'Views'));
 connectDB();
 
 
-  app.post('/upload', upload.single('file'), (req, res) => {
-    res.send('File uploaded successfully');
-  });
-app.get('/demo', (req, res) => {
-    res.render('demo/upload');
-});
+
 app.use('/', HomeRouter);
 app.use('/account', LoginRouter);
 app.use('/filter', isAuthenticated, filterRouter);
